@@ -1,5 +1,6 @@
 import express, { Application, json, urlencoded } from "express";
 import BackendRoute from "./routes/rutas";
+const cors = require("cors");
 
 class Server {
 
@@ -32,6 +33,8 @@ class Server {
         this.backend.listen(this.backend.get('port'), () => {
             console.log('Server on port:', this.backend.get('port'));
         });
+        const lista :string[]=['https://simonback.herokuapp.com/api/puntajeso']
+        this.backend.use(cors({origin:lista}))
     }
 
 }

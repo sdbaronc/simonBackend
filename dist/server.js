@@ -28,6 +28,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
 const rutas_1 = __importDefault(require("./routes/rutas"));
+const cors = require("cors");
 class Server {
     constructor() {
         this.config = () => {
@@ -43,6 +44,8 @@ class Server {
             this.backend.listen(this.backend.get('port'), () => {
                 console.log('Server on port:', this.backend.get('port'));
             });
+            const lista = ['https://simonback.herokuapp.com/api/puntajeso'];
+            this.backend.use(cors({ origin: lista }));
         };
         this.backend = (0, express_1.default)();
         this.backendRoute = new rutas_1.default();
